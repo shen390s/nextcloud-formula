@@ -5,7 +5,9 @@ include:
 {% set nextcloud = salt.pillar.get('nextcloud') %}
 
 {% if nextcloud.db_pass is not defined %}
-{% set nextcloud.db_pass = salt.pillar.get('postgresql:roles:{}:password'.format(nextcloud.db_user)) %}
+{% set db_pass = salt.pillar.get('postgresql:roles:{}:password'.format(nextcloud.db_user)) %}
+{% else %}
+{% set db_pass = nextcloud.db_pass
 {% endif %}
 
 php_ini_adapt_opcache:
@@ -91,7 +93,7 @@ nextcloud_default_config_file:
 
 nextcloud_install_db:
   cmd.run:
-    - name: php occ maintenance:install -n --database="{{ nextcloud.db_type }}" --database-name="{{ nextcloud.db_name }}" --database-host="{{ nextcloud.db_host }}" --database-user="{{ nextcloud.db_user }}" --database-pass="{{ nextcloud.db_pass }}" --admin-user="{{ nextcloud.admin_user }}" --admin-pass="{{ nextcloud.admin_password }}"
+    - name: php occ maintenance:install -n --database="{{ nextcloud.db_type }}" --database-name="{{ nextcloud.db_name }}" --database-host="{{ nextcloud.db_host }}" --database-user="{{ nextcloud.db_user }}" --database-pass="{{ db_pass }}" --admin-user="{{ nextcloud.admin_user }}" --admin-pass="{{ nextcloud.admin_password }}"
     - runas: www
     - shell: /bin/sh
     - cwd: {{ nextcloud.root }}
