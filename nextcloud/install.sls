@@ -19,7 +19,7 @@ php_ini_adapt_opcache:
           opcache.save_comments: 1
           opcache.revalidate_freq: 1
         mail function:
-          SMTP: smtp.bebif.be
+          SMTP: {{ nextcloud.mail_smtphost }}
     - require:
       - sls: nextcloud.php
 
