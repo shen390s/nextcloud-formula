@@ -1,5 +1,6 @@
 include:
   - nextcloud.php
+  - nextcloud.cron
 
 {% set nextcloud = salt.pillar.get('nextcloud') %}
 {% set db_pass = salt.pillar.get('postgresql:roles:{}:password'.format(nextcloud.db_user)) %}
@@ -63,7 +64,7 @@ nextcloud_{{ dir }}_symlink:
 
 nextcloud_data_ocdata:
   file.managed:
-    - name: {{ nextcloud.data | path_join('data/.ocdata') }}
+    - name: {{ nextcloud.data | path_join('data', '.ocdata') }}
     - user: www
     - group: www
     - mode: 644

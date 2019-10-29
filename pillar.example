@@ -7,6 +7,7 @@ nextcloud:
   php_version: php73
   root: /usr/local/www/nextcloud/
   data: /data/nextcloud
+  cron_type: cron
   url: https://nextcloud.xxx.org
   domain: nextcloud.xxx.org
   db_type: pgsql
