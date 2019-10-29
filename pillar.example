@@ -1,0 +1,47 @@
+# Notes:
+# - Changing data directory after installation is not officially supported.
+#   (see https://github.com/nextcloud/documentation/pull/955/files)
+# - Nextcloud forbid symlinks for the data directory
+
+nextcloud:
+  php_version: php73
+  root: /usr/local/www/nextcloud/
+  data: /data/nextcloud
+  url: https://nextcloud.xxx.org
+  domain: nextcloud.xxx.org
+  db_type: pgsql
+  db_name: nextcloud
+  db_host: my.pghost.lan
+  db_user: nextcloud
+  admin_user: admin
+  admin_password: admin
+  mail_smtphost: smtp.xxx.org
+  mail_domain: xxx.org
+  config:
+    system:
+      overwrite.cli.url: https://nextcloud.xxx.org
+      trusted_domains 0: nextcloud.xxx.org
+      mail_smtphost: smtp.xxx.org
+      mail_domain: xxx.org
+      mail_smtpmode: smtp
+      datadirectory: /data/nextcloud/data
+      apps_paths 0 path: /data/nextcloud/apps
+      apps_paths 0 writable: 
+        value: true
+        type: boolean
+      apps_paths 0 url: /apps
+      apps_paths 1 path: /usr/local/www/nextcloud/apps-pkg
+      apps_paths 1 writable: 
+        value: false
+        type: boolean
+      apps_paths 1 url: /apps-pkg
+      memcache.distributed: \OC\Memcache\Redis
+      memcache.locking: \OC\Memcache\Redis
+      memcache.local: \OC\Memcache\Redis
+      redis host: localhost
+      redis port: 
+        value: 6379
+        type: integer
+      filelocking.enabled:
+        value: true
+        type: boolean
