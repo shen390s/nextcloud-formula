@@ -7,7 +7,7 @@ include:
 {% if nextcloud.db_pass is not defined %}
 {% set db_pass = salt.pillar.get('postgresql:roles:{}:password'.format(nextcloud.db_user)) %}
 {% else %}
-{% set db_pass = nextcloud.db_pass
+{% set db_pass = nextcloud.db_pass %}
 {% endif %}
 
 php_ini_adapt_opcache:
