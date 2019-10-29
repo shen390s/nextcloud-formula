@@ -2,16 +2,11 @@ include:
   - nextcloud.config
 
 {% set nextcloud = salt.pillar.get('nextcloud') %}
-
-{% if nextcloud.cron_type == 'cron' %}
-{% set cron_state = 'crontab.present' %}
-{% else %}
-{% set cron_state = 'crontab.absent' %}
-{% endif %}
+{% set cron_state = 'present' is nextcloud.cron_type == 'cron' else 'absent' %}
 
 # Install or remove crontab
 nextcloud_crontab:
-  {{ cron_state }}:
+  cron.{{ cron_state }}:
     - name: cd / && php -c /usr/local/etc/php.ini-production -f {{ nextcloud.root | path_join('cron.php') }}
     - user: www
     - minute: '*/15'
