@@ -1,3 +1,6 @@
+include:
+  - nextcloud.config
+
 {% set nextcloud = salt.pillar.get('nextcloud') %}
 
 {% if nextcloud.cron_type == 'cron' %}
