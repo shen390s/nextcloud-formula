@@ -1,7 +1,7 @@
 {% set nextcloud = salt.pillar.get('nextcloud') %}
 
 {% if nextcloud.cron_type == 'cron' %}
-{% set cron_state = 'crontab.present'
+{% set cron_state = 'crontab.present' %}
 {% else %}
 {% set cron_state = 'crontab.absent' %}
 {% endif %}
