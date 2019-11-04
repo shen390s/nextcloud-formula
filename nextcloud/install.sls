@@ -44,6 +44,7 @@ nextcloud_{{ dir }}_directory:
     - name: {{ nextcloud.data | path_join(dir) }}
     - user: www
     - group: www
+    - makedirs: True
     {% if dir == 'data' %}
     - mode: 700
     {% else %}
