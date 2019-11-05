@@ -76,6 +76,8 @@ nextcloud_data_ocdata:
     - mode: 644
     - require:
       - file: nextcloud_data_directory
+    - require_in:
+      - sls: nextcloud.config
 
 nextcloud_default_config_file:
   file.copy:
