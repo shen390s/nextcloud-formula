@@ -3,16 +3,16 @@ include:
 
 {% set nextcloud = salt.pillar.get('nextcloud') %}
 
-{% for key, value in nextcloud.config.system.items() %}
+{% for cfg in nextcloud.config.system %}
 
-nextcloud_config_{{ key }}:
+nextcloud_config_{{ cfg.key }}:
   cmd.run:
-    - name: php occ config:system:set {{ key }}
-        {%- if value.type is defined %}
-        --type="{{ value.type }}"
-        --value="{{ value.value }}"
+    - name: php occ config:system:set {{ cfg.key }}
+        {%- if cfg.type is defined %}
+        --type="{{ cfg.type }}"
+        --value="{{ cfg.value }}"
         {%- else %}
-        --value="{{ value }}"
+        --value="{{ cfg.value }}"
         {%- endif %}
     - runas: www
     - cwd: {{ nextcloud.root }}
