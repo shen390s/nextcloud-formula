@@ -20,29 +20,43 @@ nextcloud:
   mail_domain: xxx.org
   config:
     system:
-      overwrite.cli.url: https://nextcloud.xxx.org
-      trusted_domains 0: nextcloud.xxx.org
-      mail_smtphost: smtp.xxx.org
-      mail_domain: xxx.org
-      mail_smtpmode: smtp
-      datadirectory: /data/nextcloud/data
-      apps_paths 0 path: /data/nextcloud/apps
-      apps_paths 0 writable: 
-        value: true
-        type: boolean
-      apps_paths 0 url: /apps
-      apps_paths 1 path: /usr/local/www/nextcloud/apps-pkg
-      apps_paths 1 writable: 
-        value: false
-        type: boolean
-      apps_paths 1 url: /apps-pkg
-      memcache.distributed: \OC\Memcache\Redis
-      memcache.locking: \OC\Memcache\Redis
-      memcache.local: \OC\Memcache\Redis
-      redis host: localhost
-      redis port: 
-        value: 6379
-        type: integer
-      filelocking.enabled:
-        value: true
-        type: boolean
+     - key: redis host
+       value: localhost
+     - key: redis port
+       value: 6379
+       type: integer
+     - key: overwrite.cli.url
+       value: https://nextcloud.xxx.org
+     - key: trusted_domains 0
+       value: nextcloud.xxx.org
+     - key: mail_smtphost
+       value: smtp.xxx.org
+     - key: mail_domain
+       value: xxx.org
+     - key: mail_smtpmode
+       value: smtp
+     - key: datadirectory
+       value: /data/nextcloud/data
+     - key: apps_paths 0 path
+       value: /data/nextcloud/apps
+     - key: apps_paths 0 writable 
+       value: true
+       type: boolean
+     - key: apps_paths 0 url
+       value: /apps
+     - key: apps_paths 1 path
+       value: /usr/local/www/nextcloud/apps-pkg
+     - key: apps_paths 1 writable
+       value: false
+       type: boolean
+     - key: apps_paths 1 url
+       value: /apps-pkg
+     - key: memcache.distributed
+       value: \OC\Memcache\Redis
+     - key: memcache.locking
+       value: \OC\Memcache\Redis
+     - key: memcache.local
+       value: \OC\Memcache\Redis
+     - key: filelocking.enabled
+       value: true
+       type: boolean
