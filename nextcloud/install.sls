@@ -15,7 +15,7 @@ php_ini_adapt_opcache:
     - name: /usr/local/etc/php.ini-production
     - sections:
         PHP:
-          memory_limit: 512M
+          memory_limit: 1024M
         opcache:
           opcache.enable: 1
           opcache.enable_cli: 1
